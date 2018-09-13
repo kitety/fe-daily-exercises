@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>金属光泽3D按钮特效</title>
+    <style type="text/css">
+    /* 盒子居中 */
+
+    html,
+    body {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: skyblue;
+    }
+    /* 按钮2d样式 引用变量*/
+
+    .box {
+        background: linear-gradient(to right, gold, darkorange);
+        color: white;
+        --width: 250px;
+        --height: calc(var(--width)/3);
+        width: var(--width);
+        height: var(--height);
+        text-align: center;
+        line-height: var(--height);
+        font-size: calc(var(--height)/2.5);
+        font-family: sans-serif;
+        letter-spacing: 0.2em;
+        border: 1px solid darkgoldenrod;
+        border-radius: 2em;
+        /* 设置按钮3d样式 */
+        transform: perspective(500px) rotateY(-15deg);
+        text-shadow: 6px 3px 2px rgba(0, 0, 0, 0.2);
+        box-shadow: 2px 0 0 5px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        transition: .87s;
+        position: relative;
+    }
+    /* 定义鼠标划过的效果 */
+
+    .box:hover {
+        transform: perspective(500px) rotateY(15deg);
+        text-shadow: -6px 3px 2px rgba(0, 0, 0, 0.2);
+        box-shadow: -2px 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+    /* 伪元素增加光泽 */
+
+    .box::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, transparent, white, transparent);
+        /* left: 0; */
+        /* 光泽动画 */
+        left: -100%;
+        transition: .87s;
+    }
+
+    .box:hover::before {
+        left: 100%;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="box">BUTTON</div>
+</body>
+
+</html>
