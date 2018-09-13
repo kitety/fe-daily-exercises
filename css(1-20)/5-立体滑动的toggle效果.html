@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>立体滑动的toggle效果</title>
+    <style type="text/css" media="screen">
+    /* 居中 */
+
+    html,
+    body,
+    .checkbox,
+    .checkbox .inner,
+    .checkbox .inner .toggle {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    /* 外侧椭圆 */
+
+    .checkbox {
+        width: 10em;
+        height: 5em;
+        background: linear-gradient(silver, whitesmoke);
+        border-radius: 2.5em;
+        font-size: 40px;
+    }
+    /* 内测椭圆 */
+
+    .checkbox .inner {
+        width: 8em;
+        height: 3.5em;
+        background: linear-gradient(dimgray, silver);
+        border-radius: 2em;
+        box-shadow: inset 0 0 1.5em rgba(0, 0, 0, 0.5);
+    }
+    /* 圆形按钮 */
+
+    .checkbox .inner .toggle {
+        width: 3.5em;
+        height: 3.5em;
+        background: linear-gradient(to top, silver, whitesmoke);
+        border-radius: 50%;
+        box-shadow: 0 0.4em 0.6em rgba(0, 0, 0, 0.2);
+        /* 画出圆形按钮 */
+        position: relative;
+        left: -30%;
+    }
+    /* 圆形按钮立体效果 */
+
+    .checkbox .inner .toggle::before {
+        content: 'OFF';
+        position: absolute;
+        height: 80%;
+        width: 80%;
+        background: linear-gradient(whitesmoke, silver);
+        border-radius: 50%;
+        text-align: center;
+        line-height: calc(3.5em*0.8);
+        color: gray;
+        font-family: sans-serif;
+    }
+
+    .checkbox .inner.active {
+        background: linear-gradient(green, limegreen);
+    }
+
+    .checkbox .inner.active .toggle {
+        left: 30%;
+    }
+
+    .checkbox .inner.active .toggle::before {
+        content: 'ON';
+        color: limegreen;
+    }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="checkbox">
+        <div class="inner">
+            <div class="toggle"></div>
+        </div>
+    </div>
+</body>
+<script>
+jQuery(document).ready(function($) {
+    $('.toggle').click(function() {
+        $('.inner').toggleClass('active');
+    })
+});
+</script>
+
+</html>
