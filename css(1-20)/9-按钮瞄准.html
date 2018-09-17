@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>按钮瞄准</title>
+    <style type="text/css" media="screen">
+    /* 居中 */
+
+    html,
+    body {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+        color: silver;
+    }
+    /* 文字样式 */
+
+    .box {
+        width: 9em;
+        height: 3em;
+        font-size: 30px;
+        text-align: center;
+        line-height: 3em;
+        letter-spacing: .2em;
+        font-family: sans-serif;
+        /* 瞄准圆圈 */
+        position: relative;
+        /* 缓动效果 */
+        filter: blur(2px);
+        transition: .3s;
+    }
+    .box:hover{
+      filter: blur(.2px);
+    }
+    /* 瞄准圆圈 */
+
+    .box::after {
+        content: '';
+        position: absolute;
+        width: 3em;
+        height: 3em;
+        border: 1px solid red;
+        border-radius: 50%;
+        left: 3em;
+    }
+    /* 十字坐标线 */
+
+    .box span:not(:first-child) {
+        position: absolute;
+        background-color: red;
+    }
+
+    .box span.top,
+    .box span.bottom {
+        width: 1px;
+        height: 3em;
+        left: 50%;
+    }
+
+    .box span.top {
+        top: -3em;
+    }
+
+    .box span.bottom {
+        bottom: -3em;
+    }
+
+    .box span.left,
+    .box span.right {
+        width: 3em;
+        height: 1px;
+        top: 50%;
+    }
+
+    .box span.left {
+        left: 0;
+    }
+
+    .box span.right {
+        right: 0;
+    }
+    /* 动画 */
+
+    @keyframes aim {
+        from {
+            filter: opacity(0.2);
+        }
+        to {
+            filter: opacity(0.8);
+        }
+    }
+    /* 移动到上面的动画 */
+
+    .box::after {
+        filter: opacity(0);
+    }
+
+    .box span:not(:first-child) {
+        filter: opacity(0);
+    }
+    .box:hover::after,.box:hover span:not(:first-child){
+      animation: aim 1s linear infinite alternate;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <span>BUTTON</span>
+        <span class="top"></span>
+        <span class="bottom"></span>
+        <span class="left"></span>
+        <span class="right"></span>
+    </div>
+</body>
+
+</html>
