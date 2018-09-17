@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>充电loader</title>
+    <style type="text/css" media="screen">
+    /* 显示居中 */
+
+    html,
+    body {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(to bottom, teal, aqua)
+    }
+    /* 电池主体 */
+
+    .battery {
+        width: 6em;
+        height: 3em;
+        color: midnightblue;
+        border: .5em solid currentcolor;
+        /* 电池凸起 */
+        position: relative;
+        /* 充电电量 用背景做*/
+        background-image: linear-gradient(to right, whitesmoke, whitesmoke);
+        background-repeat: no-repeat;
+        background-size: 30% 80%;
+        background-position: .3em 50%;
+        /* 用步长动画 */
+        animation: charge 5s steps(8) infinite;
+    }
+    /* 电池凸起 */
+
+    .battery::after {
+        content: '';
+        position: absolute;
+        width: .5em;
+        height: 2em;
+        background-color: currentcolor;
+        top: .5em;
+        right: -1em;
+        border-radius: 0 .2em .2em 0;
+    }
+    /* 定义动画效果 */
+
+    @keyframes charge {
+        from {
+            background-size: 10% 80%;
+        }
+        to {
+            background-size: 95% 80%;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div class="battery">
+    </div>
+</body>
+
+</html>
