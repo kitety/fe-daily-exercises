@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>同心圆弧旋转loader</title>
+    <style>
+        html,
+        body,
+        .circle {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #000;
+        }
+
+        /* 最外层的一层 */
+        .circle {
+            width: 10em;
+            height: 10em;
+            border-width: 0.4em;
+            border-style: solid;
+            border-radius: 50%;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            border-top-color: red;
+            border-bottom-color: blue;
+            position: relative;
+        }
+
+        /* 伪元素中间一层 */
+        .circle::before {
+            content: '';
+            position: absolute;
+            width: 75%;
+            height: 75%;
+            border-width: .4em;
+            border-style: solid;
+            border-radius: 50%;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            border-top-color: orange;
+            border-bottom-color: cyan;
+        }
+
+        /* 伪元素最外面一层 */
+        .circle::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            border-width: .4em;
+            border-style: solid;
+            border-radius: 50%;
+            border-left-color: transparent;
+            border-right-color: transparent;
+            border-top-color: yellow;
+            border-bottom-color: green;
+        }
+
+        /* 定义动画 */
+        @keyframes animate {
+            from {
+                transform: rotate(0deg)
+            }
+
+            to {
+                transform: rotate(1440deg)
+            }
+        }
+
+        /* 应用动画 */
+        .circle {
+            animation: animate 4s ease-in-out infinite alternate;
+        }
+
+        .circle::before {
+            animation: animate 8s ease-in-out infinite alternate;
+        }
+
+        .circle::after {
+            animation: animate 16s ease-in-out infinite alternate;
+        }
+
+        @keyframes fontjump {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        .loading {
+            color: #fff;
+            position: relative;
+            left: -50%;
+            animation: fontjump 1s ease-in-out infinite alternate;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="circle"> </div>
+    <div class="loading">Loading...</div>
+</body>
+
+</html>
