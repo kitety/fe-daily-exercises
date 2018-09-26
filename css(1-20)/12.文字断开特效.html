@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>12.文字断开特效</title>
+    <style>
+        /* 居中 */
+        html,
+        body {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 设置渐变色背景 */
+        body {
+            background: linear-gradient(brown, sandybrown)
+        }
+
+        /* 字体设置 */
+        .text {
+            font-size: 5em;
+            font-family: "arial black";
+            position: relative;
+            color: transparent;
+        }
+
+        /* 利用伪元素增加文字 */
+        .text::before,
+        .text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: lightyellow;
+            transition: .2s;
+        }
+
+        /* 左侧的文字遮罩和背景 */
+        .text::before {
+            /* background-color: darkblue; */
+            clip-path: polygon(0 0, 60% 0, 30% 100%, 0 100%);
+        }
+
+        .text:hover::before {
+            left: -0.15em;
+            transform: rotate(-5deg);
+            top: -0.05em;
+        }
+
+        /* 右侧的文字遮罩和背景 */
+        .text::after {
+            /* background-color: darkblue; */
+            clip-path: polygon(60% 0, 100% 0, 100% 100%, 30% 100%);
+        }
+
+        .text:hover::after {
+            left: 0.15em;
+            transform: rotate(5deg);
+            top: 0.05em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="text" data-text="BREAK">BREAK</div>
+</body>
+
+</html>
