@@ -21,6 +21,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            /* 高度值整体高度的和 */
             height: calc(9em + 1em + 2em);
             position: relative;
         }
@@ -73,18 +74,51 @@
         }
 
         /* 热气 */
-        .coffee .vapor{
+        .coffee .vapor {
             width: 7em;
             display: flex;
             justify-content: space-between;
         }
-        .coffee .capor span{
+
+        .coffee .vapor span {
             width: 0.1em;
-            min-width: 1px;
+            min-width: 3px;
             height: 2em;
             background-color: #fff;
             animation: evaporation 2s linear infinite;
             filter: opacity(0);
+        }
+
+        @keyframes evaporation {
+            from {
+                transform: translateY(0);
+                filter: opacity(0.9) blur(0.2em)
+            }
+
+            to {
+                transform: translateY(-4em);
+                filter: opacity(0) blur(0.4em)
+            }
+        }
+
+        .coffee .vapor span:nth-child(1) {
+            animation-delay: 0.51s;
+        }
+
+        .coffee .vapor span:nth-child(2) {
+            animation-delay: 0.12s;
+        }
+
+        .coffee .vapor span:nth-child(3) {
+            animation-delay: 0.35s;
+        }
+
+        .coffee .vapor span:nth-child(4) {
+            animation-delay: 0.43s;
+        }
+
+        .coffee .vapor span:nth-child(5) {
+            animation-delay: 0.24s;
         }
     </style>
 </head>
